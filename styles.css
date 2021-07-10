@@ -1,0 +1,433 @@
+/* CUSTOM PROPERTIES */
+
+@font-face {
+    font-family: fontBogart;
+    src: url(./assets/Bogart-Regular-trial.ttf);
+}
+
+
+:root {
+    --first-color: #222831;
+    --first-alpha-color: rgba(34, 40, 49, .7);
+    --second-color: #2d4059;
+    --second-alpha-color: rgba(45, 64, 89, .7);
+    --third-color: #ff5722;
+    --third-alpha-color: rgba(255, 87, 34, .7);
+
+    --white-color: #ffffff;
+    --gray-light-color: #eeeeee;
+    --gray-color: #888888;
+    --gray-dark-color: #333333;
+    --black-color: #000000;
+
+    --link-color: #509ee3;
+    --title-color: #333;
+    --text-color: #222;
+
+    --white-alpha-color: rgba(255, 255, 255, .5);
+    --black-alpha-color: rgba(0, 0, 0, .5);
+
+    --max-width: 1200px;
+    --header-height: 4rem;
+
+    --font-main: 'Nunito', sans-serif;
+    --font-secundary: 'Poiret One', cursive;
+}
+
+/* RESET */
+  
+body {
+    margin: 0;
+    overflow-x: hidden;
+    color: var(--text-color);
+}
+  
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    font-family: var(--font-main);
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--link-color);
+    transition: all 0.5s ease-out;
+  }
+  
+a:hover {
+    opacity: 0.75;
+}
+
+
+h1 {
+    font-family: var(--font-secundary);
+    margin: 0;
+    font-size: 2rem;
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-family: var(--font-secundary);
+}
+
+h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+h5 {
+    margin: 0;
+    font-size: .85rem;
+}
+
+h6 {
+    margin: 0;
+    font-size: .7rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+p {
+    line-height: 1.6;
+}
+
+
+*, *::after, *::before {
+    box-sizing: inherit;
+}
+
+
+/* COMPONENTS */
+
+/************ Hero Image ************/
+.heroImage {
+    background-image: var(--hero-image);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: var(--hero-attachment);
+}
+
+.heroImage-opacity {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--hero-opacity-color);
+}
+
+.heroImage-title {
+    font-size: 7.5vw;
+    color: var(--hero-text-color);
+}
+
+/*************** Menu **************/
+.menu {
+    position: fixed;
+    left: 0;
+    bottom: var(--header-height);
+    width: 100%;
+    background-color: var(--second-color);
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    -webkit-transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    -ms-transition: opacity 0.5s ease;
+    -o-transition: opacity 0.5s ease;
+}
+
+
+.menu.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+.menu-btn {
+    background-color: var(--second-color);
+    border: 0;
+    outline: thin solid var(--third-alpha-color);
+    cursor: pointer;
+    padding: 0 4px;
+}
+
+.menu-btn svg {
+    fill: var(--third-color);
+}
+
+
+.menu a {
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: var(--third-color);
+    transition: color 0.5s ease, background-color 0.5s ease;
+    -webkit-transition: color 0.5s ease, background-color 0.5s ease;
+    -moz-transition: color 0.5s ease, background-color 0.5s ease;
+    -ms-transition: color 0.5s ease, background-color 0.5s ease;
+    -o-transition: color 0.5s ease, background-color 0.5s ease;
+}
+
+
+.menu a:hover {
+    color: var(--white-color);
+    background-color: var(--third-color);
+}
+
+
+@media screen and (min-width: 1024px) {
+    .menu-btn {
+        display: none;
+    }
+
+    .menu {
+        position: static;
+        opacity: 1;
+        pointer-events: auto;
+        width: auto;
+        flex-direction: row;
+    }
+
+    .menu a {
+        padding: 0 1rem;
+    }
+
+    .menu a:last-child {
+        padding-right: 0; /* Para alinear bien el último elemento al margen derecho */
+    }
+
+    .menu a:hover {
+        background-color: transparent;
+    }
+}
+
+
+/********** ProgressBar ************/
+progress {
+    width: 100%;
+    height: 1rem;
+    background-color: var(--gray-color);
+}
+
+progress::--webkit-progress-bar {
+    background-color: var(--gray-color);
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--gray-dark-color);
+}
+
+
+progress::-moz-progress-bar {
+    background-color: var(--gray-dark-color);
+}
+
+.progress {
+    margin: 1rem auto;
+}
+
+.progress > p {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+}
+
+/* UTILITIES */
+
+.bg-gray-light {
+    background-color: var(--gray-light-color);
+}
+
+.box-shadow-1 {
+    box-shadow: .25rem .25rem 1rem rgba(0, 0, 0, .25);
+}
+
+
+.btn {
+    border-radius: 0.4rem;
+    padding: 1rem;
+    -webkit-border-radius: 0.4rem;
+    -moz-border-radius: 0.4rem;
+    -ms-border-radius: 0.4rem;
+    -o-border-radius: 0.4rem;
+    display: inline-block;
+    width: 200px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    color: var(--white-color);
+    background-color: var(--third-color);
+}
+
+
+.container {
+    margin: 0 auto;
+    max-width: var(--max-width);
+}
+
+
+
+.gray-scale {
+    filter: grayscale(1);
+    -webkit-filter: grayscale(1);
+}
+
+
+.none {
+    display: none;
+}
+
+.section {
+    padding: 2rem 1rem;
+}
+
+.section-title {
+    border-top: thin solid var(--third-color);
+    border-bottom: thin solid var(--third-color);
+    width: 250px;
+    margin: 2rem auto;
+    padding: .5rem 1rem;
+    text-align: center;
+    color: var(--first-color);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+@media screen and (min-width: 1024px) {
+
+    .full-lg-screen {
+        width: 100%;
+        height: 105vh;
+    }
+
+    .text-lg-center {
+        text-align: center;
+    }
+    
+    .text-lg-left {
+        text-align: left;
+    }
+    
+    .text-lg-right {
+        text-align: right;
+    }    
+}
+
+
+/* SITE STYLES */
+
+.about > article {
+    margin-bottom: 2rem;
+}
+
+.header {
+    padding: 1rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--second-color);
+}
+
+
+.header > .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo > a {
+    color: var(--third-color);
+    font-weight: bold;
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+.service-card {
+    margin: 1rem auto;
+    padding: 1rem;
+    text-align: center;
+}
+
+.service-card h3 {
+    color: var(--first-color);
+}   
+
+.service-card svg {
+    margin-bottom: 1rem;
+    fill: var(--third-color);
+}
+
+@media screen and (min-width: 768px) {
+    .services > .container {
+        display: grid;
+        grid-template-columns: repeat(2, 45%);
+        justify-content: space-between;
+        align-content: center;
+    }
+
+    .services .section-title {
+        grid-column: span 2;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    .about {
+        display: grid;
+        grid-template-columns: repeat(3, 30%);
+        justify-content: space-between;
+        align-content:center;
+    }
+
+    .header {
+        position: sticky;
+        top: 0;
+        padding: 0.5rem;
+        height: calc(--header-height - 0.5rem);
+    }
+
+    .services > .container {
+        display: grid;
+        grid-template-columns: repeat(3, 30%);
+        /* justify-content: space-between;
+        align-content: center; */
+    }
+
+    .services .section-title {
+        grid-column: span 3;
+    }
+
+
+}
+
