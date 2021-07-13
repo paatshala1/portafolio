@@ -292,7 +292,6 @@ progress::-moz-progress-bar {
     -webkit-filter: grayscale(1);
 }
 
-
 .none {
     display: none;
 }
