@@ -25,7 +25,7 @@
     --text-color: #222;
 
     --white-alpha-color: rgba(255, 255, 255, .5);
-    --black-alpha-color: rgba(0, 0, 0, .5);
+    --black-alpha-color: rgba(0, 0, 0, .5   );
 
     --max-width: 1200px;
     --header-height: 4rem;
@@ -36,12 +36,27 @@
 
 /* RESET */
   
+
+
+
+a {
+    color: var(--link-color);
+    transition: all 0.5s ease-out;
+}
+
+a:hover {
+    opacity: 0.75;
+}
+
 body {
     margin: 0;
     overflow-x: hidden;
     color: var(--text-color);
 }
-  
+
+footer {
+    margin-top: var(--header-height);
+}
 
 html {
     font-size: 16px;
@@ -49,16 +64,6 @@ html {
     font-family: var(--font-main);
     box-sizing: border-box;
 }
-
-a {
-    color: var(--link-color);
-    transition: all 0.5s ease-out;
-  }
-  
-a:hover {
-    opacity: 0.75;
-}
-
 
 h1 {
     font-family: var(--font-secundary);
@@ -82,6 +87,7 @@ h3 {
 h4 {
     margin: 0;
     font-size: 1rem;
+    font-family: var(--font-secundary);
 }
 
 h5 {
@@ -279,13 +285,22 @@ progress::-moz-progress-bar {
     background-color: var(--third-color);
 }
 
+#close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    fill: var(--third-color);
+}
+
+#close > svg {
+    width: 2rem;
+    height: 2rem;
+}
 
 .container {
     margin: 0 auto;
     max-width: var(--max-width);
 }
-
-
 
 .gray-scale {
     filter: grayscale(1);
@@ -354,6 +369,98 @@ progress::-moz-progress-bar {
     text-decoration: none;
 }
 
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black-alpha-color);
+    color: var(--gray-light-color);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s linear;
+    -webkit-transition: opacity 0.5s linear;
+    -moz-transition: opacity 0.5s linear;
+    -ms-transition: opacity 0.5s linear;
+    -o-transition: opacity 0.5s linear;
+}
+
+
+/* Esto es la clave para que "se abra" la ventana con el click. Lo que hace es que los estilos se activan
+cuando el elemento definido en el selector es el target de la página.
+
+La forma básica de escribir esto es esta, sin embargo en el selector que sigue se ve el uso de un selector
+avanzado que usa dos cosas
+
+1. Uso de brackets para indicar que aplica cuando una propiedad HTML tiene un valor específico.
+
+2. Uso de algo parecido a expresiones reulares para indicar que lo que interesa es cuando el valor de la propiedad
+   inicia (en este caso por medio de XXX) con determinados caracteres.
+
+   | : empiece
+   ~ : termine
+   ^ : contenga
+
+.modal#modal-1:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+*/
+
+.modal[id|='modal']:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modalBox {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 1.5rem;
+    box-shadow: 0rem 0rem 0.5rem var(--white-alpha-color);
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    background-color: var(--second-color);
+    max-width: 400px;
+}
+
+.modalBox > a:hover {
+    opacity: 1;
+}
+
+.modalBox > img {
+    max-height: 250px;
+}
+
+.modalDetails {
+    display: grid;
+    grid-template-columns: 30% 60%;
+    grid-auto-rows: 1.5rem;
+    margin-top: 1rem;
+}
+
+.modalDetails b {
+    color: var(--third-color);
+}
+
+.modalText {
+    padding-top: 1rem;
+}
+
+.modalTitle {
+    padding-top: 0.5rem;
+    border-bottom: 0.3rem solid var(--third-alpha-color);
+    color: var(--white-color);
+    padding-bottom: 0.3rem;
+}
 
 .portfolio-card {
     position: relative;
@@ -424,6 +531,21 @@ progress::-moz-progress-bar {
 
 
 @media screen and (min-width: 768px) {
+
+    .modalBox {
+        flex-direction: row;
+        max-width: 700px;
+        padding-right: 4rem;
+    }
+
+    .modalBox img {
+        max-height: 300px;
+    }
+
+    .modalCont {
+        margin-left: 2rem;
+        align-self: center;
+    }
 
     .portfolio {
         padding-top: 1rem;
